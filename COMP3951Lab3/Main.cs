@@ -49,7 +49,7 @@ namespace COMP3951Lab3
 
             //  Loop through all the immediate subdirectories of C.
             foreach (string entry in Directory.GetDirectories(currentDirectoryName))
-            {
+            {              
                 DisplayFileSystemInfoAttributes(new DirectoryInfo(entry));
                 listView1.Items.Add(entry);
             }
@@ -60,7 +60,20 @@ namespace COMP3951Lab3
                 DisplayFileSystemInfoAttributes(new FileInfo(entry));
                 listView1.Items.Add(entry);
             }
-            
+
+            //for (int i = 0; i < listView1.Items.Count; i++)
+            //{
+            //    try
+            //    {
+            //        listView1.Items[i] = 
+            //        //System.Diagnostics.Process.Start(Path.Combine(currentDirectoryName, listView1.Items[i].Text));
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.StackTrace);
+            //    } 
+            //}
+
             labelCurrentPath.Text = currentDirectoryName;
         }
 
@@ -72,12 +85,14 @@ namespace COMP3951Lab3
 
             if (DialogResult == DialogResult.Yes)
             {
+                listView1.Items.Clear();
                 targetDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
                 showCurrentDirectory(targetDirectory);
             }
 
             else if (DialogResult == DialogResult.No)
             {
+                listView1.Items.Clear();
                 targetDirectory = Directory.GetDirectoryRoot(Assembly.GetEntryAssembly().Location);
                 showCurrentDirectory(targetDirectory);
             }
