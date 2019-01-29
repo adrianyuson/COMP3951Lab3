@@ -9,3 +9,14 @@ C:\Users\adrian\source\repos\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.ex
 C:\Users\adrian\source\repos\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.pdb
 C:\Users\adrian\source\repos\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.Main.resources
 C:\Users\adrian\source\repos\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.Dialog.resources
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\bin\Debug\COMP3951Lab3.exe.config
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\bin\Debug\COMP3951Lab3.exe
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\bin\Debug\COMP3951Lab3.pdb
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.csprojAssemblyReference.cache
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.Main.resources
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.Dialog.resources
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.Properties.Resources.resources
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.csproj.GenerateResource.cache
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.csproj.CoreCompileInputs.cache
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.exe
+C:\Users\A00791498\Desktop\C#\COMP3951Lab3\COMP3951Lab3\obj\Debug\COMP3951Lab3.pdb

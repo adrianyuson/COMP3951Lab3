@@ -23,21 +23,7 @@ namespace COMP3951Lab3
 
         private void openBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (Dialog dialog = new Dialog())
-            {
-                if (dialog.ShowDialog() == DialogResult.Yes)
-                {
-                    targetDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-                    showCurrentDirectory(targetDirectory);
-                }
-
-                if (dialog.ShowDialog() == DialogResult.No)
-                {
-                    targetDirectory = Directory.GetDirectoryRoot(Assembly.GetEntryAssembly().Location);
-                    Console.WriteLine(targetDirectory);
-                    showCurrentDirectory(targetDirectory);
-                }
-            }
+            ShowDialogBox();
         }
 
         private void DisplayFileSystemInfoAttributes(FileSystemInfo fsi)
@@ -76,6 +62,31 @@ namespace COMP3951Lab3
             }
             
             labelCurrentPath.Text = currentDirectoryName;
+        }
+
+        public void ShowDialogBox()
+        {
+            Dialog dialog = new Dialog();
+            //Console.WriteLine(dialog.ShowDialog());
+            DialogResult = dialog.ShowDialog(this);
+
+            if (DialogResult == DialogResult.Yes)
+            {
+                targetDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                showCurrentDirectory(targetDirectory);
+            }
+
+            else if (DialogResult == DialogResult.No)
+            {
+                targetDirectory = Directory.GetDirectoryRoot(Assembly.GetEntryAssembly().Location);
+                showCurrentDirectory(targetDirectory);
+            }
+
+            else if (DialogResult == DialogResult.Cancel)
+            {
+                
+            }
+            dialog.Dispose();
         }
 
     }
