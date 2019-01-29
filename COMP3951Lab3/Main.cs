@@ -43,7 +43,7 @@ namespace COMP3951Lab3
         private void showCurrentDirectory(String directory)
         {
             string currentDirectoryName = directory;
-            string parentDirectoryName = "...\\" + Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)));
+            string parentDirectoryName = Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)));
             listView1.Items.Add(parentDirectoryName);
             DisplayFileSystemInfoAttributes(new DirectoryInfo(parentDirectoryName));
 
@@ -61,18 +61,6 @@ namespace COMP3951Lab3
                 listView1.Items.Add(entry);
             }
 
-            //for (int i = 0; i < listView1.Items.Count; i++)
-            //{
-            //    try
-            //    {
-            //        listView1.Items[i] = 
-            //        //System.Diagnostics.Process.Start(Path.Combine(currentDirectoryName, listView1.Items[i].Text));
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.StackTrace);
-            //    } 
-            //}
 
             labelCurrentPath.Text = currentDirectoryName;
         }
@@ -104,5 +92,28 @@ namespace COMP3951Lab3
             dialog.Dispose();
         }
 
+        private void ListView1_ItemActivate(Object sender, EventArgs e)
+        {
+
+            MessageBox.Show("You are in the ListView.ItemActivate event.");
+
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            targetDirectory = Path.GetFileName(listView1.SelectedItems[0].Text);
+            Console.WriteLine(targetDirectory);
+            if (!targetDirectory.Contains(".")) {
+                
+                listView1.Items.Clear();
+                showCurrentDirectory(targetDirectory);
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(listView1.SelectedItems[0].Text);
+            }
+
+
+        }
     }
 }
