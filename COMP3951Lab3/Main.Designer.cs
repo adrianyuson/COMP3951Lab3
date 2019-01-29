@@ -87,11 +87,14 @@
             // 
             // listView1
             // 
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 27);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(564, 215);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Tile;
             // 
             // labelCurrentPath
             // 

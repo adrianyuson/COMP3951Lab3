@@ -14,6 +14,8 @@ namespace COMP3951Lab3
 {
     public partial class Main : Form
     {
+        string targetDirectory;
+
         public Main()
         {
             InitializeComponent();
@@ -25,7 +27,15 @@ namespace COMP3951Lab3
             {
                 if (dialog.ShowDialog() == DialogResult.Yes)
                 {
-                    showCurrentDirectory();
+                    targetDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                    showCurrentDirectory(targetDirectory);
+                }
+
+                if (dialog.ShowDialog() == DialogResult.No)
+                {
+                    targetDirectory = Directory.GetDirectoryRoot(Assembly.GetEntryAssembly().Location);
+                    Console.WriteLine(targetDirectory);
+                    showCurrentDirectory(targetDirectory);
                 }
             }
         }
@@ -44,27 +54,28 @@ namespace COMP3951Lab3
             Console.WriteLine("{0} entry {1} was created on {2:D}", entryType, fsi.FullName, fsi.CreationTime);
         }
 
-        private void showCurrentDirectory()
+        private void showCurrentDirectory(String directory)
         {
-            string parentDirectoryName = Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)));
+            string currentDirectoryName = directory;
+            string parentDirectoryName = "...\\" + Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)));
             listView1.Items.Add(parentDirectoryName);
             DisplayFileSystemInfoAttributes(new DirectoryInfo(parentDirectoryName));
 
             //  Loop through all the immediate subdirectories of C.
-            foreach (string entry in Directory.GetDirectories(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)))
+            foreach (string entry in Directory.GetDirectories(currentDirectoryName))
             {
                 DisplayFileSystemInfoAttributes(new DirectoryInfo(entry));
                 listView1.Items.Add(entry);
             }
 
             //  Loop through all the files in C.
-            foreach (string entry in Directory.GetFiles(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)))
+            foreach (string entry in Directory.GetFiles(currentDirectoryName))
             {
                 DisplayFileSystemInfoAttributes(new FileInfo(entry));
                 listView1.Items.Add(entry);
             }
-            string currentDirectoryName = Path.GetFileName(Path.GetDirectoryName(@"C:\Users\adrian\Desktop"));
-            labelCurrentPath.Text = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            
+            labelCurrentPath.Text = currentDirectoryName;
         }
 
     }
