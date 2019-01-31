@@ -14,8 +14,6 @@ namespace COMP3951Lab3
 {
     public partial class Main : Form
     {
-
-
         public Main()
         {
             try
@@ -23,10 +21,12 @@ namespace COMP3951Lab3
                 InitializeComponent();
                 addImages();
                 hideMainUI();
+                closeBrowserToolStripMenuItem.Enabled = false;
+                viewToolStripMenuItem.Enabled = false;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e);
+                MessageBox.Show(ex.Message);
             }         
         }
 
@@ -42,29 +42,34 @@ namespace COMP3951Lab3
 
         private void showDirectory(String directory)
         {
-            showMainUI();
-            //Console.WriteLine(Assembly.GetEntryAssembly().Location);
-            
-            string currentDirectoryName = directory;
-            
-            string parentDirectoryName = Path.GetDirectoryName(Directory.GetCurrentDirectory());
-            listView1.Items.Add("...");
-
-            //  Loop through all the immediate subdirectories of C.
-            foreach (string entry in Directory.GetDirectories(currentDirectoryName))
-            {              
-                listView1.Items.Add(Path.GetFileName(entry), 0);
-            }
-
-            //  Loop through all the files in C.
-            foreach (string entry in Directory.GetFiles(currentDirectoryName))
+            try
             {
-                listView1.Items.Add(Path.GetFileName(entry), 1);
+                showMainUI();
+
+                string currentDirectoryName = directory;
+
+                string parentDirectoryName = Path.GetDirectoryName(Directory.GetCurrentDirectory());
+                listView1.Items.Add("...");
+
+                //  Loop through all the immediate subdirectories of C.
+                foreach (string entry in Directory.GetDirectories(currentDirectoryName))
+                {
+                    listView1.Items.Add(Path.GetFileName(entry), 0);
+                }
+
+                //  Loop through all the files in C.
+                foreach (string entry in Directory.GetFiles(currentDirectoryName))
+                {
+                    listView1.Items.Add(Path.GetFileName(entry), 1);
+                }
+                Directory.SetCurrentDirectory(directory);
+                currentPathTextField.Text = "Path: " + Directory.GetCurrentDirectory();
             }
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            Console.WriteLine(currentDirectoryName);
-            Directory.SetCurrentDirectory(directory);
-            currentPathTextField.Text = currentDirectoryName;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         public void ShowDialogBox()
@@ -103,24 +108,32 @@ namespace COMP3951Lab3
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            string targetDirectory = Path.GetFileName(listView1.SelectedItems[0].Text);
-
-            if (targetDirectory.Contains("..."))
+            try
             {
-                if(Directory.GetCurrentDirectory() != Directory.GetParent(targetDirectory).ToString())
+                string targetDirectory = Path.GetFileName(listView1.SelectedItems[0].Text);
+
+                if (targetDirectory.Contains("..."))
+                {
+                    if (Directory.GetParent(Directory.GetCurrentDirectory().ToString()) != null)
+                    {
+                        listView1.Items.Clear();
+                        showDirectory(Directory.GetParent(Directory.GetCurrentDirectory()).ToString());
+                    }
+                }
+                else if (!targetDirectory.Contains("."))
                 {
                     listView1.Items.Clear();
-                    showDirectory(Directory.GetParent(targetDirectory).ToString());
+                    showDirectory(targetDirectory);
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start(listView1.SelectedItems[0].Text);
                 }
             }
-            else if (!targetDirectory.Contains(".")) {
-                listView1.Items.Clear();
-                showDirectory(targetDirectory);
-            }
-            else
+            catch (Exception ex)
             {
-                System.Diagnostics.Process.Start(listView1.SelectedItems[0].Text);
-            }
+                MessageBox.Show(ex.Message);
+            }   
         }
 
         private void tiledefaultToolStripMenuItem_Click(object sender, EventArgs e)
@@ -164,6 +177,9 @@ namespace COMP3951Lab3
             listView1.Hide();
             selectionLabel.Hide();
             currentPathTextField.Hide();
+            closeBrowserToolStripMenuItem.Enabled = false;
+            openBrowserToolStripMenuItem.Enabled = true;
+            viewToolStripMenuItem.Enabled = false;
         }
 
         private void showMainUI()
@@ -171,6 +187,9 @@ namespace COMP3951Lab3
             listView1.Show();
             selectionLabel.Show();
             currentPathTextField.Show();
+            closeBrowserToolStripMenuItem.Enabled = true;
+            openBrowserToolStripMenuItem.Enabled = false;
+            viewToolStripMenuItem.Enabled = true;
         }
     }
 }

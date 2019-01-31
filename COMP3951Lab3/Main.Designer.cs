@@ -101,28 +101,28 @@
             // tiledefaultToolStripMenuItem
             // 
             this.tiledefaultToolStripMenuItem.Name = "tiledefaultToolStripMenuItem";
-            this.tiledefaultToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.tiledefaultToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tiledefaultToolStripMenuItem.Text = "Tile (default)";
             this.tiledefaultToolStripMenuItem.Click += new System.EventHandler(this.tiledefaultToolStripMenuItem_Click);
             // 
             // listToolStripMenuItem
             // 
             this.listToolStripMenuItem.Name = "listToolStripMenuItem";
-            this.listToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listToolStripMenuItem.Text = "List";
             this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
             // 
             // smallIconToolStripMenuItem
             // 
             this.smallIconToolStripMenuItem.Name = "smallIconToolStripMenuItem";
-            this.smallIconToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.smallIconToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.smallIconToolStripMenuItem.Text = "Small Icon";
             this.smallIconToolStripMenuItem.Click += new System.EventHandler(this.smallIconToolStripMenuItem_Click);
             // 
             // largeIconToolStripMenuItem
             // 
             this.largeIconToolStripMenuItem.Name = "largeIconToolStripMenuItem";
-            this.largeIconToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.largeIconToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.largeIconToolStripMenuItem.Text = "Large Icon";
             this.largeIconToolStripMenuItem.Click += new System.EventHandler(this.largeIconToolStripMenuItem_Click);
             // 
@@ -153,7 +153,7 @@
             this.currentPathTextField.Location = new System.Drawing.Point(73, 246);
             this.currentPathTextField.Name = "currentPathTextField";
             this.currentPathTextField.ReadOnly = true;
-            this.currentPathTextField.Size = new System.Drawing.Size(423, 20);
+            this.currentPathTextField.Size = new System.Drawing.Size(479, 20);
             this.currentPathTextField.TabIndex = 3;
             // 
             // progressBar
