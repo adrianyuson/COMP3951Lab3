@@ -10,6 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Purpose: A simple directory browser where you can also execute files.
+/// Author: Adrian Yuson
+/// Date: January 30, 2019
+/// </summary>
 namespace COMP3951Lab3
 {
     public partial class Main : Form
@@ -40,6 +45,7 @@ namespace COMP3951Lab3
             hideMainUI();
         }
 
+        // Display the current directory's files and folder in the listView
         private void showDirectory(String directory)
         {
             try
@@ -72,6 +78,7 @@ namespace COMP3951Lab3
             
         }
 
+        // Show the dialog box
         public void ShowDialogBox()
         {
             string targetDirectory;
@@ -101,11 +108,7 @@ namespace COMP3951Lab3
             dialog.Dispose();
         }
 
-        private void ListView1_ItemActivate(Object sender, EventArgs e)
-        {
-            MessageBox.Show("You are in the ListView.ItemActivate event.");
-        }
-
+        // Open folder or execute file upon double click
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -120,7 +123,7 @@ namespace COMP3951Lab3
                         showDirectory(Directory.GetParent(Directory.GetCurrentDirectory()).ToString());
                     }
                 }
-                else if (!targetDirectory.Contains("."))
+                else if (Directory.Exists(targetDirectory))
                 {
                     listView1.Items.Clear();
                     showDirectory(targetDirectory);
@@ -156,6 +159,7 @@ namespace COMP3951Lab3
             listView1.View = View.LargeIcon;
         }
 
+        // Add icons in png files to our imageList
         private void addImages()
         {
             var imageList = new ImageList();
@@ -166,12 +170,14 @@ namespace COMP3951Lab3
             listView1.StateImageList = imageList;
         }
         
+        // Display the progressBar status
         private void progressBarIncrement()
         {
             progressBar.Increment(-100);
             progressBar.Increment(100);
         }
 
+        // Hide the main UI
         private void hideMainUI()
         {
             listView1.Hide();
@@ -182,6 +188,7 @@ namespace COMP3951Lab3
             viewToolStripMenuItem.Enabled = false;
         }
 
+        // Show the main UI
         private void showMainUI()
         {
             listView1.Show();
